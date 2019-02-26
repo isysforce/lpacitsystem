@@ -1,0 +1,31 @@
+<div class="ui fixed inverted menu">
+   <div class="ui container">
+      <a href="<?=SITE_HOST?>" class="header item">
+         <img class="logo" src="<?=SITE_HOST?>/assets/images/logo.png">
+         <?=$this->site_name?>
+      </a>
+      <div class="ui simple dropdown item">
+         หมวดหมู่ <i class="dropdown icon"></i>
+         <div class="menu">
+            <?=$this->tags?>
+            <div class="divider"></div>
+            <a class="item" href="<?=SITE_HOST?>/tags">ทั้งหมด</a>
+         </div>
+      </div>
+      
+      <div class="right menu">
+         <div class="item">
+            <div class="ui transparent  left inverted icon input">
+               <i class="search icon"></i>
+               <input type="text" placeholder="ค้นหา">
+               <!-- <button class="ui button">Search</button> -->
+            </div>
+         </div>
+      
+         <div class="item">
+            <a class="ui inverted button">เข้าสู่ระบบ</a>
+         </div>
+         
+      </div>
+   </div>
+</div>

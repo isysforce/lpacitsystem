@@ -1,0 +1,13 @@
+<?php
+
+include "config/config.php";
+include "template.php";
+
+$view = new Template();
+
+$view->title = "Hello World app";
+$view->properties['name'] = "Jude";
+$view->properties['site_name'] = "Site name";
+
+echo $view->render('content.html');
+?>

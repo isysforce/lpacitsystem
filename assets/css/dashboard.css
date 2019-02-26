@@ -1,0 +1,50 @@
+.ui.menu .logo.image {
+    width: 35px;
+    margin-right: 1em;
+}
+
+.toc {
+    position: fixed;
+    z-index: 1;
+    background-color: #1b1c1d;
+    width: 250px;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.toc .ui.menu {
+    border-radius: 0;
+    border-width: 0 1px 0 0;
+    box-shadow: none;
+    margin: 0;
+    width: inherit;
+    overflow: hidden;
+    will-change: transform;
+    max-height: 100vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    height: -webkit-fill-available;
+}
+
+.article {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-width: 0px;
+    margin-left: 250px;
+}
+
+.full.height {
+    background-color: #FFFFFF;
+}
+
+.main.container {
+    margin-right: 318px !important;
+}
+
+/* body.pushable {
+    background-color: #FFFFFF!important;
+} */

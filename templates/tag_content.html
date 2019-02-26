@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+   <?php include($this->_scriptPath."head.html")?>
+   <title>
+      <?=$this->title?>
+   </title>
+   <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/css/content.css">
+</head>
+
+<body>
+
+    <?php include($this->_scriptPath."menu.html")?>
+
+    <div class="ui main text container">
+            
+        <h1 class="ui horizontal divider header">
+            หมวดหมู่ <?=$this->tag_name?>
+        </h1>
+        <?=$this->content_features?>
+    </div>
+
+   <?php include($this->_scriptPath."footer.html")?>
+
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+   <?php include($this->_scriptPath."head.html")?>
+   <title>
+      <?=$this->title?>
+   </title>
+   <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/css/content.css">
+   <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/css/style.css">
+</head>
+
+<body>
+
+   <?php include($this->_scriptPath."menu.html")?>
+
+   <div class="ui main text container">
+      <h1 class="ui dividing header">
+         <?=$this->title?>
+         <div class="sub header">
+            หมวดหมู่
+            <a href="<?=SITE_HOST?>/tag/<?=$this->tag_url?>"><?=$this->tag?></a>
+         </div>
+         
+      </h1>
+      <p class="content_text">
+            <?=$this->body?>
+      </p>
+      
+   </div>
+
+   <div class="ui text container">
+      <div class="ui divider"></div>
+      <div class="ui segment">
+         <h2 class="ui floated header">แสดงความคิดเห็น</h2>
+         <div class="ui clearing divider"></div>
+         <form class="ui form" action="<?=SITE_HOST?>/comment.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <input type="hidden" name="content_id" value="<?=$this->content_id?>">
+            <input type="hidden" name="redirect" value="<?=$_SERVER['REQUEST_URI']?>">
+            <div class="field">
+               <label>ชื่อ</label>
+               <input type="text" name="author" placeholder="ชื่อ" minlength="2" maxlength="30" required>
+            </div>
+            <div class="field">
+               <label>ข้อความ</label>
+               <textarea name="comment" minlength="2" maxlength="500" required></textarea>
+            </div>
+            <button class="ui button" type="submit">แสดงความคิดเห็น</button>
+         </form>
+         
+         <div class="ui horizontal divider header">
+            ความคิดเห็น
+         </div>
+
+         <div class="ui middle aligned divided list">
+            <?=$this->comments?>
+         </div>
+      </div>
+   </div>
+
+   <?php include($this->_scriptPath."footer.html")?>
+</body>
+
+</html>

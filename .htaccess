@@ -1,0 +1,4 @@
+# RewriteEngine on
+# RewriteRule ^/?content/([0-9]+)$ /content.php?id=$1
+# Redirect /tag /tags
+FallbackResource /lpacitsystem//index.php
