@@ -43,7 +43,7 @@ function getTag($tag_id){
 function getContentFeatures($limit = 10){
     include "controller/connection.php";
     $sql = "SELECT * FROM contents
-            ORDER BY creation ASC
+            ORDER BY creation DESC
             LIMIT $limit";
 
     $result = $conn->query($sql);

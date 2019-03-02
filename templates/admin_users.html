@@ -21,47 +21,50 @@
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/list.css">
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/segment.css">
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/dropdown.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/transition.css">
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/icon.css">
 
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/css/dashboard.css">
     <title><?=$this->title?></title>
+
+    <script src="<?=SITE_HOST?>/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="<?=SITE_HOST?>/assets/dist/semantic/components/dropdown.js"></script>
+    <script src="<?=SITE_HOST?>/assets/dist/semantic/components/transition.js"></script>
+
 </head>
 <body class="layouts pushable">
     <div class="full height">
         <?=$this->dashboard_menu?>
         <div class="article">
-            <!-- <div class="ui masthead vertical segment">
-                <div class="ui container">
-                    <div class="introduction">
-                        <h1 class="ui header">
-                            Layouts
-                            <div class="sub header">
-                                Examples of using Semantic UI
-                            </div>
-                        </h1>
-                        <div class="ui hidden divider"></div>
-                    </div>
-                </div>
-            </div> -->
             <div class="ui main intro container">
-                <h2 class="ui dividing header">เนื้อหาทั้งหมด<a class="anchor" id="starter"></a></h2>
-                <!-- <p>Examples to introduce components and their function</p> -->
+                <h2 class="ui dividing header"><?=$this->header?><a class="anchor" id="starter"></a></h2>
                 <table class="ui celled table">
                     <thead>
                         <tr>
                             <th class="center aligned">ลำดับ</th>
-                            <th class="center aligned">หัวข้อ</th>
-                            <th class="center aligned">หมวดหมู่</th>
-                            <th class="center aligned">วัน-เวลา</th>
+                            <th class="center aligned">ชื่อผู้ใช้</th>
+                            <th class="center aligned">ชื่อแสดง</th>
                             <th class="center aligned">เครื่องมือ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?=$this->content_tr?>
                     </tbody>
+                    <tfoot class="full-width">
+                        <tr>
+                            <th colspan="4">
+                                <a class="ui right floated small primary labeled icon button" href="<?=SITE_HOST?>/admin_add_user.php">
+                                    <i class="user icon"></i>เพิ่มผู้ใช้
+                                </a>
+                            </th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
     </div>
+    <!-- <script>
+        $('select.dropdown').dropdown();
+    </script> -->
 </body>
 </html>

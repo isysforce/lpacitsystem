@@ -19,3 +19,8 @@
 <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/dropdown.css">
 <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/icon.css">
 
+<script>
+    function search(){
+        window.location.href = "<?=SITE_HOST?>/search/" + document.getElementById("search_str").value;
+    }
+</script>

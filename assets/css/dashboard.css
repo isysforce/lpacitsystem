@@ -35,16 +35,52 @@
     flex: 1 1 auto;
     min-width: 0px;
     margin-left: 250px;
+    /* height: 100%; */
 }
 
 .full.height {
     background-color: #FFFFFF;
+    height: 100%;
 }
 
 .main.container {
     margin-right: 318px !important;
+    margin-left: 3em !important;
+    margin-right: 3em !important;
+    width: auto !important;
+    max-width: 960px !important;
+    padding: 2em 0em 7em;
+    /* height: 100%; */
 }
 
-/* body.pushable {
+body.pushable {
     background-color: #FFFFFF!important;
-} */
+}
+
+.masthead .introduction {
+    display: block;
+    position: relative;
+}
+
+.masthead .container {
+    margin-right: 387px !important;
+
+}
+
+.masthead .container, .main.container, .fixed.menu > .container {
+    margin-left: 3em !important;
+    margin-right: 3em !important;
+    width: auto !important;
+    max-width: 960px !important;
+}
+
+.masthead.segment {
+    position: relative;
+    z-index: 3;
+    margin: 0em;
+    min-height: 185px;
+    padding: 3em 0em;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #DDDDDD;
+    box-shadow: none;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <title><?=$this->title?></title>
+
+    <link rel="shortcut icon" href="<?=SITE_HOST?>/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/reset.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/site.css">
+  
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/container.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/grid.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/header.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/image.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/menu.css">
+  
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/divider.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/segment.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/form.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/input.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/button.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/list.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/message.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/icon.css">
+  
+    <script src="<?=SITE_HOST?>/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="<?=SITE_HOST?>/assets/dist/semantic/components/form.js"></script>
+    <script src="<?=SITE_HOST?>/assets/dist/semantic/components/transition.js"></script>
+
+    <style type="text/css">
+        body {
+          background-color: #DADADA;
+        }
+        body > .grid {
+          height: 100%;
+        }
+        .image {
+          margin-top: -100px;
+        }
+        .column {
+          max-width: 450px;
+        }
+    </style>
+    <script>
+      $(document)
+        .ready(function() {
+          $('.ui.form')
+            .form({
+              fields: {
+                user: {
+                  identifier  : 'user',
+                  rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'กรุณาใส่ชื่อผู้ใช้'
+                    }
+                  ]
+                },
+                pass: {
+                  identifier  : 'pass',
+                  rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'กรุณาใส่รหัสผ่าน'
+                    },
+                    {
+                      type   : 'length[6]',
+                      prompt : 'ใส่รหัสผ่านอย่างน้อย 6 ตัวอักษร'
+                    }
+                  ]
+                }
+              }
+            })
+          ;
+        })
+      ;
+    </script>
+</head>
+<body>
+    <div class="ui middle aligned center aligned grid">
+        <div class="column">
+          <h2 class="ui teal image header">
+            <img src="<?=SITE_HOST?>/assets/images/logo.png" class="image">
+            <div class="content">
+              เข้าสู่ระบบจัดการ
+            </div>
+          </h2>
+          <form class="ui large form" method="POST" action="<?=SITE_HOST?>/login.php">
+            <div class="ui stacked segment">
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="user icon"></i>
+                  <input type="text" name="user" placeholder="ชื่อผู้ใช้งาน">
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="lock icon"></i>
+                  <input type="password" name="pass" placeholder="รหัสผ่าน">
+                </div>
+              </div>
+              <div class="ui fluid large teal submit button">เข้าสู่ระบบ</div>
+            </div>
+      
+            <div class="ui error message"></div>
+      
+          </form>
+          <?php
+          if ($this->error !== "")
+          {
+            echo '<div class="ui error message">'. $this->error .'</div>';
+          }
+          ?>
+          
+        </div>
+      </div>
+</body>
+</html>

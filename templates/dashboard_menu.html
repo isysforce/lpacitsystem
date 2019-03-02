@@ -1,0 +1,73 @@
+<div class="toc">
+    <div class="ui vertical inverted menu">
+        <div class="item">
+            <a class="ui logo icon image" href="/">
+                <img src="<?=SITE_HOST?>/assets/images/logo.png">
+            </a>
+            <a href="<?=SITE_HOST?>"><b>LPAC IT System</b></a>
+        </div>
+        <div class="item">
+            <div class="header">จัดการเนื้อหา</div>
+            <div class="menu">
+                
+                <?php 
+                if ($this->active == 1){
+                    echo
+                    '<div class="active item">
+                        เนื้อหาทั้งหมด
+                    </div>';
+                } else {
+                    echo
+                    '<a class="item" href="'.SITE_HOST.'/dashboard.php">
+                        เนื้อหาทั้งหมด
+                    </a>';
+                }
+                if ($this->active == 2){
+                    echo 
+                    '<div class="active item">'.$this->menu_title.'</div>';
+                } else {
+                    echo 
+                    '<a class="item" href="'.SITE_HOST.'/add.php">
+                        เพิ่มเนื้อหา
+                    </a>';
+                }
+                ?>
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">จัดการผู้ดูแลระบบ</div>
+            <div class="menu">
+                <?php
+                if ($this->active == 3){
+                    echo '<div class="active item">ข้อมูลส่วนตัว</div>';
+                } else {
+                    echo '<a class="item" href="'.SITE_HOST.'/admin_profile.php">ข้อมูลส่วนตัว</a>';
+                }
+                if ($this->active == 4){
+                    echo '<div class="active item">เปลี่ยนรหัสผ่าน</div>';
+                } else {
+                    echo '<a class="item" href="'.SITE_HOST.'/admin_password.php">เปลี่ยนรหัสผ่าน</a>';
+                }
+                //if ($this->active == 5){
+                //    echo '<div class="active item">ผู้ดูแลระบบทั้งหมด</div>';
+                //} else {
+                //    echo '<a class="item" href="'.SITE_HOST.'/admin_users.php">ผู้ดูแลระบบทั้งหมด</a>';
+                //}
+                ?>
+                <!-- <a class="item" href="<?=SITE_HOST?>/admin_profile.php">
+                    ข้อมูลส่วนตัว
+                </a>
+                <a class="item" href="<?=SITE_HOST?>/admin_password.php">
+                    เปลี่ยนรหัสผ่าน
+                </a>
+                <a class="item" href="<?=SITE_HOST?>/admin_users.php">
+                    ผู้ดูแลระบบทั้งหมด
+                </a> -->
+            </div>
+            
+        </div>
+        <a class="item" href="<?=SITE_HOST?>/logout.php">
+            <b>ออกจากระบบ</b>
+        </a>
+    </div>
+</div>

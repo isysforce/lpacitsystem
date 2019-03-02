@@ -1,0 +1,12 @@
+<tr>
+    <td><?=$this->content_id?></td>
+    <td><?=$this->content_title?></td>
+    <td><?=$this->content_tag?></td>
+    <td><?=$this->content_date?></td>
+    <td class="right aligned">
+        <div class="ui right floated small labeled icon buttons">
+            <a class="ui green button" href="<?=SITE_HOST?>/edit.php?cid=<?=$this->content_id?>"><i class="edit icon"></i>แก้ไข</a>
+            <a class="ui red button" href="<?=SITE_HOST?>/delete.php?cid=<?=$this->content_id?>"><i class="trash icon"></i>ลบ</a>
+        </div>
+    </td>
+</tr>

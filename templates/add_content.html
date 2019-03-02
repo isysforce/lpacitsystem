@@ -21,47 +21,49 @@
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/list.css">
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/segment.css">
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/dropdown.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/transition.css">
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/icon.css">
 
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/css/dashboard.css">
     <title><?=$this->title?></title>
+
+    <script src="<?=SITE_HOST?>/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="<?=SITE_HOST?>/assets/dist/semantic/components/dropdown.js"></script>
+    <script src="<?=SITE_HOST?>/assets/dist/semantic/components/transition.js"></script>
+
 </head>
 <body class="layouts pushable">
     <div class="full height">
         <?=$this->dashboard_menu?>
         <div class="article">
-            <!-- <div class="ui masthead vertical segment">
-                <div class="ui container">
-                    <div class="introduction">
-                        <h1 class="ui header">
-                            Layouts
-                            <div class="sub header">
-                                Examples of using Semantic UI
-                            </div>
-                        </h1>
-                        <div class="ui hidden divider"></div>
-                    </div>
-                </div>
-            </div> -->
             <div class="ui main intro container">
-                <h2 class="ui dividing header">เนื้อหาทั้งหมด<a class="anchor" id="starter"></a></h2>
-                <!-- <p>Examples to introduce components and their function</p> -->
-                <table class="ui celled table">
-                    <thead>
-                        <tr>
-                            <th class="center aligned">ลำดับ</th>
-                            <th class="center aligned">หัวข้อ</th>
-                            <th class="center aligned">หมวดหมู่</th>
-                            <th class="center aligned">วัน-เวลา</th>
-                            <th class="center aligned">เครื่องมือ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?=$this->content_tr?>
-                    </tbody>
-                </table>
+                <h2 class="ui dividing header"><?=$this->header?><a class="anchor" id="starter"></a></h2>
+                <form class="ui form" method="POST" action="<?=$this->action_url?>">
+                    <div class="field">
+                        <label>หัวข้อ</label>
+                        <input type="text" name="title" maxlength="100" placeholder="หัวข้อ" value="<?=$this->content_title?>" required>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>หมวดหมู่</label>
+                            <select name="tag" class="ui selection dropdown" required>
+                                <option value="">หมวดหมู่</option>
+                                <?=$this->tags?>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="field">
+                        <label>เนื้อหา</label>
+                        <textarea name="body" rows="30" required oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'><?=$this->body?></textarea>
+                    </div>
+                    <button class="ui right floated green button" type="submit"><?=$this->submit_btn?></button>
+                  </form>
             </div>
         </div>
     </div>
+    <script>
+        $('select.dropdown').dropdown();
+    </script>
 </body>
 </html>

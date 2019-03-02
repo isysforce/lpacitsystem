@@ -15,15 +15,14 @@
       
       <div class="right menu">
          <div class="item">
-            <div class="ui transparent  left inverted icon input">
-               <i class="search icon"></i>
-               <input type="text" placeholder="ค้นหา">
-               <!-- <button class="ui button">Search</button> -->
+            <div class="ui transparent left inverted icon input">
+               <i class="search link icon" onclick="search()"></i>
+               <input id="search_str" type="text" placeholder="ค้นหา">
             </div>
          </div>
       
          <div class="item">
-            <a class="ui inverted button">เข้าสู่ระบบ</a>
+            <a class="ui inverted button" href="<?=SITE_HOST?>/dashboard.php">จัดการ</a>
          </div>
          
       </div>

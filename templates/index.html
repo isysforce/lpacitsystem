@@ -9,14 +9,16 @@
 
 </head>
 <body>
-    <div class="ui inverted vertical masthead center aligned segment">
+    <div class="ui inverted vertical masthead center aligned segment" style="background-image: url(<?=SITE_HOST?>/assets/images/gallery/head.jpg);
+    background-repeat: no-repeat, repeat;
+    background-size: 100%;
+    background-position-y: 6%;">
       <?php include($this->_scriptPath."menu.html") ?>
       <div class="ui text container">
         <h1 class="ui inverted header">
           <?=$this->site_name_th?>
         </h1>
         <h2><?=$this->site_name?></h2>
-        <!-- <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div> -->
       </div>
         
     </div>
@@ -26,18 +28,10 @@
           เนื้อหาใหม่
         </h4>
         <?=$this->content_features?>
-        <!-- <div class="ui hidden horizontal divider">gfhfgh</div> -->
         <a class="ui green right labeled icon button" a href="<?=SITE_HOST?>/tags">
             <i class="right arrow icon"></i>
             ดูเนื้อหาทั้งหมด
         </a>
-        <!-- <h3 class="ui header"><a href="/tags">ดูเนื้อหาทั้งหมด</a></h3> -->
-        <!-- <p>Instead of focusing on content creation and hard work, we have learned how to master the art of doing nothing by providing massive amounts of whitespace and generic content that can seem massive, monolithic and worth your attention.</p> -->
-        <!-- <a class="ui large button">อ่านต่อ</a> -->
-        <!-- <div class="ui section divider"></div>
-        <h3 class="ui header">Did We Tell You About Our Bananas?</h3>
-        <p>Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but its really true. It took years of gene splicing and combinatory DNA research, but our bananas can really dance.</p>
-        <a class="ui large button">อ่านต่อ</a> -->
       </div>
     </div>
     <?php include($this->_scriptPath."footer.html")?>
