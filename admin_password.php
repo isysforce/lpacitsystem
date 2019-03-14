@@ -11,10 +11,11 @@ $menu->properties['active'] = 4;
 
 $content_tr = "";
 $view->properties['header'] = "เปลี่ยนรหัสผ่าน";
-$view->properties['success'] = "";
-$view->properties['error'] = "";
 $view->properties['dashboard_menu'] = $menu->render('dashboard_menu.html');
 $view->title = "LPAC IT System Dashboard";
+
+$view->properties['success'] = "";
+$view->properties['error'] = "";
 
 if (isset($_POST['success'])){
     $view->properties['success'] = $_POST['success'];

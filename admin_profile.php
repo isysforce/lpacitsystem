@@ -14,10 +14,6 @@ $view->properties['header'] = "ข้อมูลส่วนตัว";
 $view->properties['dashboard_menu'] = $menu->render('dashboard_menu.html');
 $view->title = "LPAC IT System Dashboard";
 
-$view->properties['display_name'] = $_SESSION['display_name'];
-$view->properties['username'] = $_SESSION['user'];
-$view->properties['user_id'] = $_SESSION['user_id'];
-
 $view->properties['success'] = "";
 $view->properties['error'] = "";
 
@@ -29,6 +25,10 @@ if (isset($_POST['error'])){
     $view->properties['error'] = $_POST['error'];
     unset($_POST['error']);
 }
+
+$view->properties['display_name'] = $_SESSION['display_name'];
+$view->properties['username'] = $_SESSION['user'];
+$view->properties['user_id'] = $_SESSION['user_id'];
 
 $view->properties['content_tr'] = $content_tr;
 echo $view->render('admin_profile.html');

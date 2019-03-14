@@ -23,20 +23,45 @@
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/dropdown.css">
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/transition.css">
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/icon.css">
-
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/dimmer.css"> 
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/modal.css">
+    <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/dist/semantic/components/card.css">
     <link rel="stylesheet" type="text/css" href="<?=SITE_HOST?>/assets/css/dashboard.css">
     <title><?=$this->title?></title>
 
     <script src="<?=SITE_HOST?>/assets/js/jquery-3.3.1.min.js"></script>
     <script src="<?=SITE_HOST?>/assets/dist/semantic/components/dropdown.js"></script>
     <script src="<?=SITE_HOST?>/assets/dist/semantic/components/transition.js"></script>
+    <script src="<?=SITE_HOST?>/assets/dist/semantic/components/dimmer.js"></script>
+    <script src="<?=SITE_HOST?>/assets/dist/semantic/components/modal.js"></script>
 
 </head>
 <body class="layouts pushable">
+        <div class="ui modal gallery">
+            <div class="header">Gallery</div>
+            <div class="scrolling content">
+                <div class="ui four cards" id="imagesThumb">
+                    <?=$this->gallery?>
+                </div>
+                
+            </div>
+            <form enctype="multipart/form-data">
+                <input type="file" (change)="fileEvent($event)" class="inputfile" id="file_to_upload" />
+            </form>
+            <div class="actions">
+                <label for="file_to_upload" class="ui primary button">
+                    <i class="ui upload icon"></i> 
+                    อัพโหลด
+                </label>
+                <!-- <div class="ui primary button">อัพโหลด</div> -->
+                <div class="ui cancel button">ปิด</div>
+            </div>
+        </div>
     <div class="full height">
         <?=$this->dashboard_menu?>
         <div class="article">
             <div class="ui main intro container">
+
                 <h2 class="ui dividing header"><?=$this->header?><a class="anchor" id="starter"></a></h2>
                 <form class="ui form" method="POST" action="<?=$this->action_url?>">
                     <div class="field">
@@ -53,17 +78,137 @@
                         </div>
                     </div>
                     
+
                     <div class="field">
                         <label>เนื้อหา</label>
-                        <textarea name="body" rows="30" required oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'><?=$this->body?></textarea>
+                        <!-- <div class="ui icon buttons">
+                            <button class="ui button"><i class="align left icon"></i></button>
+                            <button class="ui button"><i class="align center icon"></i></button>
+                            <button class="ui button"><i class="align right icon"></i></button>
+                        </div> -->
+                        <!-- <div class="ui icon buttons">
+                            <button class="ui button"><i class="bold icon"></i></button>
+                            <button class="ui button"><i class="underline icon"></i></button>
+                        </div> -->
+                        <a class="ui icon button" id="showGallery">
+                            <i class="image icon"></i>
+                            แทรกรูปภาพ
+                        </a>
+
+                        <textarea name="body" id="textContent" rows="30" required oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'><?=$this->body?></textarea>
                     </div>
+
+
                     <button class="ui right floated green button" type="submit"><?=$this->submit_btn?></button>
                   </form>
             </div>
         </div>
     </div>
     <script>
-        $('select.dropdown').dropdown();
+
+        $(function(){
+
+            $('select.dropdown').dropdown();
+
+            $('#showGallery').click(function() {
+                $('.gallery').modal('show');
+            });
+
+            function UploadFile() {
+                console.log("Uploading");
+                if($("#file_to_upload").val() != ""){
+                    var file_data = $('#file_to_upload').prop('files')[0];
+                    var form_data = new FormData();
+                    
+                    form_data.append('file', file_data);
+                    
+                    $.ajax({
+                        url: '<?=SITE_HOST?>/image_upload.php',
+                        dataType: 'text',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function(data){
+                            console.log(data);
+                            
+                            if (data.substring(0, 2) == "ok"){
+                                var imageName = data.substring(2);
+                                $("#file_to_upload").val("");
+                                var _card  = `<div class="card" id="${imageName}">
+                                            <div class="image">
+                                                <img src="<?=SITE_HOST?>/upload/${imageName}">
+                                            </div>
+                                            <div class="content">
+                                                <div class="description">
+                                                    ${imageName}
+                                                </div>
+                                            </div>
+                                            <div class="ui two buttons">
+                                                <button class="ui green button" value="${imageName}" onclick="InsertImage(this)">
+                                                    <i class="add icon"></i>
+                                                </button>
+                                                <button class="ui red button" value="${imageName}" onclick="DeleteImage(this)">
+                                                    <i class="trash icon"></i>
+                                                </button>
+                                            </div>
+                                            
+                                            </div>`;
+                                $("#imagesThumb").append(_card);
+                            }
+                            
+                        }
+                    });
+                } else {
+                    alert("กรุณาเลือกไฟล์!");
+                }
+            }
+
+            $("#file_to_upload").on('change', function(){ UploadFile(); });
+        });
+
+
+        function InsertImage(param){
+            $('.gallery').modal('hide');
+
+            var imgTag = `<img class="ui centered medium image" src="<?=SITE_HOST?>/upload/${$(param).val()}">`;
+
+            var cursorPos = $('#textContent').prop('selectionStart');
+            var v = $('#textContent').val();
+            var textBefore = v.substring(0,  cursorPos);
+            var textAfter  = v.substring(cursorPos, v.length);
+
+            $('#textContent').val(textBefore + imgTag + textAfter);
+        }
+
+        function DeleteImage(param){
+            var elem = $(param);
+            var element = elem.val().split('.').slice(0, -1).join('.');
+
+            var form_data = new FormData();
+            form_data.append('imageName', elem.val());
+
+            $.ajax({
+                url: '<?=SITE_HOST?>/image_delete.php',
+                dataType: 'text',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(data){
+                    console.log(data);
+                    if (data == "ok"){
+                        $('#' + element).remove();
+                    }
+
+                }
+            });
+            
+
+        }
+        
     </script>
 </body>
 </html>

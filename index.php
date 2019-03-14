@@ -134,9 +134,13 @@ function Search($search_str){
     echo $view->render('tag_content.html');
 }
 
+
 function ShowContent($content_url)
 {
     include "controller/connection.php";
+    $exp = "/((?:<\\/?\\w+)(?:\\s+\\w+(?:\\s*=\\s*(?:\\\".*?\\\"|'.*?'|[^'\\\">\\s]+)?)+\\s*|\\s*)\\/?>)([^<]*)?/";
+    $ex1 = "/^([^<>]*)(<?)/i";
+    $ex2 = "/(>)([^<>]*)$/i";
     
     $sql = "SELECT contents.id, title, body, tags.tag_name, tags.tag_url
             FROM contents
@@ -151,7 +155,21 @@ function ShowContent($content_url)
         if ($row){
             $view = new Template();
             $view->title = $row["title"];
-            $view->properties['body'] = $row["body"];
+            $content_body = $row["body"];
+            // $content_body = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $content_body);
+            
+            $content_body = nl2br($content_body);
+            $content_body = preg_replace_callback($exp, function ($matches) {
+                return $matches[1] . str_replace(" ", "&nbsp;", $matches[2]);
+            }, $content_body);
+            $content_body = preg_replace_callback($ex1, function ($matches) {
+                return str_replace(" ", "&nbsp;", $matches[1]) . $matches[2];
+            }, $content_body);
+            $content_body = preg_replace_callback($ex2, function ($matches) {
+                return $matches[1] . str_replace(" ", "&nbsp;", $matches[2]);
+            }, $content_body);
+            
+            $view->properties['body'] = $content_body;
             $view->properties['content_id'] = $row["id"];
             $view->properties['tag'] = $row["tag_name"];
             $view->properties['tag_url'] = $row["tag_url"];

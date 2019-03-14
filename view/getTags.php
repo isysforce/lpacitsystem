@@ -12,19 +12,6 @@ function getTags(){
     return $data;
 }
 
-function getSiteInfo(){
-    include "controller/connection.php";
-    $sql = "SELECT * FROM site_info";
-    $result = $conn->query($sql);
-    $conn->close();
-
-    // $row = $result->fetch_assoc();
-    // $result->free();
-    // $data = array("site_name"=>$row["site_name"], "site_name_en"=>$row["site_name_en"]);
-
-    return $result->fetch_assoc();
-}
-
 function getTag($tag_id){
     include "controller/connection.php";
     $sql = "SELECT * FROM tags
@@ -148,6 +135,40 @@ function getComments($content_id, &$count = null){
     $result->free();
     
     return $data;
+}
+
+function getUploadedImages(){
+    $content = '';
+    if ($handle = opendir('upload')) {
+
+        while (false !== ($imageName = readdir($handle))) {
+    
+            if ($imageName != "." && $imageName != "..") {
+                $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $imageName);
+                $content .= '<div class="card" id="'.$withoutExt.'">
+                            <div class="image">
+                                <img src="'.SITE_HOST.'/upload/'.$imageName.'">
+                            </div>
+                            <div class="content">
+                                <div class="description">
+                                '.$imageName.'
+                                </div>
+                            </div>
+                            <div class="ui two buttons">
+                                <button class="ui green button" value="'.$imageName.'" onclick="InsertImage(this)">
+                                    <i class="add icon"></i>
+                                </button>
+                                <button class="ui red button" value="'.$imageName.'" onclick="DeleteImage(this)">
+                                    <i class="trash icon"></i>
+                                </button>
+                            </div>
+                            </div>';
+            }
+        }
+    
+        closedir($handle);
+    }
+    return $content;
 }
 
 ?>

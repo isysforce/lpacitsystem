@@ -45,6 +45,8 @@ $view->properties['action_url'] = SITE_HOST . "/save_edit.php?cid=" . $content_i
 $view->properties['tags'] = $tags;
 $view->properties['submit_btn'] = "บันทึก";
 
+$view->properties['gallery'] = getUploadedImages();
+
 $view->title = "LPAC IT System Dashboard";
 
 $menu = new Template();

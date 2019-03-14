@@ -26,7 +26,9 @@ $view->properties['content_title'] = "";
 $view->properties['body'] = "";
 $view->properties['tags'] = $tags;
 $view->properties['action_url'] = SITE_HOST . "/save_add.php";
-$view->properties['submit_btn'] = "เพิ่มเนื้อหา";
+$view->properties['submit_btn'] = "บันทึก";
+
+$view->properties['gallery'] = getUploadedImages();
 
 $view->title = "LPAC IT System Dashboard";
 
